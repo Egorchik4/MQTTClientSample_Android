@@ -6,21 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ConnectFragment">
 
-        <Button
-            android:id="@+id/button_clean_client"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="75dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/button_clean_text"
-            app:layout_constraintBottom_toTopOf="@+id/button_prefill_client"
-            app:layout_constraintEnd_toEndOf="@+id/button_unsubscribe"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/button_subscribe"
-            app:layout_constraintTop_toBottomOf="@+id/button_subscribe"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <Button
+    <Button
             android:id="@+id/button_prefill_client"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

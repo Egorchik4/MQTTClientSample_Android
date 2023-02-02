@@ -115,13 +115,6 @@ class ClientFragment : Fragment() {
             view.findViewById<EditText>(R.id.edittext_subtopic).setText(MQTT_TEST_TOPIC)
         }
 
-        view.findViewById<Button>(R.id.button_clean_client).setOnClickListener {
-            // Clean values in edit texts
-            view.findViewById<EditText>(R.id.edittext_pubtopic).setText("")
-            view.findViewById<EditText>(R.id.edittext_pubmsg).setText("")
-            view.findViewById<EditText>(R.id.edittext_subtopic).setText("")
-        }
-
         view.findViewById<Button>(R.id.button_disconnect).setOnClickListener {
             if (mqttClient.isConnected()) {
                 // Disconnect from MQTT Broker
