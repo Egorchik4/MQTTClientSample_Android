@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.mqttkotlinsample.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.M)

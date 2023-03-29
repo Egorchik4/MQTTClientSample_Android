@@ -1,7 +1,9 @@
-package com.example.mqttkotlinsample.data
+package com.example.mqttkotlinsample.data.datasource
 
 import android.content.Context
 import android.util.Log
+import com.example.mqttkotlinsample.MQTT_SERVER_URI
+import com.example.mqttkotlinsample.domain.models.ConnectModel
 import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.IMqttActionListener
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
@@ -10,14 +12,11 @@ import org.eclipse.paho.client.mqttv3.MqttCallback
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import org.eclipse.paho.client.mqttv3.MqttException
 import org.eclipse.paho.client.mqttv3.MqttMessage
+import javax.inject.Inject
 
-class MQTTClient(
-	context: Context?,
-	serverURI: String,
-	clientID: String = ""
-) {
+class DataSourceImpl @Inject constructor(private val context: Context): DataSource {
 
-	private var mqttClient = MqttAndroidClient(context, serverURI, clientID)
+	private lateinit var mqttClient: MqttAndroidClient
 
 	private val defaultCbConnect = object : IMqttActionListener {
 		override fun onSuccess(asyncActionToken: IMqttToken?) {
@@ -78,74 +77,36 @@ class MQTTClient(
 		}
 	}
 
-	fun connect(
-		username: String = "",
-		password: String = "",
-		cbConnect: IMqttActionListener = defaultCbConnect,
-		cbClient: MqttCallback = defaultCbClient
-	) {
-		mqttClient.setCallback(cbClient)
+	override fun connectToBroker(connectModel: ConnectModel) {
+		mqttClient = MqttAndroidClient(context,MQTT_SERVER_URI,connectModel.username)
+		mqttClient.setCallback(defaultCbClient)
 		val options = MqttConnectOptions()
-		options.userName = username
-		options.password = password.toCharArray()
+		options.userName = connectModel.username
+		options.password = connectModel.password.toCharArray()
 
 		try {
-			mqttClient.connect(options, null, cbConnect)
+			mqttClient.connect(options, context, defaultCbConnect)
 		} catch (e: MqttException) {
 			e.printStackTrace()
 		}
 	}
 
-	fun isConnected(): Boolean {
-		return mqttClient.isConnected
+	override fun brokerIsConnected() =
+		mqttClient.isConnected
+
+	override fun disconnectToBroker(): Boolean {
+		TODO("Not yet implemented")
 	}
 
-	fun subscribe(
-		topic: String,
-		qos: Int = 1,
-		cbSubscribe: IMqttActionListener = defaultCbSubscribe
-	) {
-		try {
-			mqttClient.subscribe(topic, qos, null, cbSubscribe)
-		} catch (e: MqttException) {
-			e.printStackTrace()
-		}
+	override fun publishMessageToTopic() {
+		TODO("Not yet implemented")
 	}
 
-	fun unsubscribe(
-		topic: String,
-		cbUnsubscribe: IMqttActionListener = defaultCbUnsubscribe
-	) {
-		try {
-			mqttClient.unsubscribe(topic, null, cbUnsubscribe)
-		} catch (e: MqttException) {
-			e.printStackTrace()
-		}
+	override fun subscribeToTopic() {
+		TODO("Not yet implemented")
 	}
 
-	fun publish(
-		topic: String,
-		msg: String,
-		qos: Int = 1,
-		retained: Boolean = false,
-		cbPublish: IMqttActionListener = defaultCbPublish
-	) {
-		try {
-			val message = MqttMessage()
-			message.payload = msg.toByteArray()
-			message.qos = qos
-			message.isRetained = retained
-			mqttClient.publish(topic, message, null, cbPublish)
-		} catch (e: MqttException) {
-			e.printStackTrace()
-		}
-	}
-
-	fun disconnect(cbDisconnect: IMqttActionListener = defaultCbDisconnect) {
-		try {
-			mqttClient.disconnect(null, cbDisconnect)
-		} catch (e: MqttException) {
-			e.printStackTrace()
-		}
+	override fun unsubscribeToTopic() {
+		TODO("Not yet implemented")
 	}
 }

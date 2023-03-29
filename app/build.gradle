@@ -1,9 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
+    namespace 'com.example.mqttkotlinsample'
     compileSdkVersion 33
 
     defaultConfig {
@@ -32,7 +35,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    namespace 'com.example.mqttkotlinsample'
 }
 
 dependencies {
@@ -53,4 +55,9 @@ dependencies {
     //MqttLibrary
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.4'
     implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+
+    //Hilt
+    implementation 'com.google.dagger:hilt-android:2.43.2'
+    kapt 'com.google.dagger:hilt-compiler:2.43.2'
+    implementation 'androidx.fragment:fragment-ktx:1.5.5'
 }

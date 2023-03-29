@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mqttkotlinsample.MQTT_CLIENT_ID
 import com.example.mqttkotlinsample.MQTT_CLIENT_ID_KEY
@@ -17,9 +18,14 @@ import com.example.mqttkotlinsample.MQTT_USERNAME
 import com.example.mqttkotlinsample.MQTT_USERNAME_KEY
 import com.example.mqttkotlinsample.R
 import com.example.mqttkotlinsample.databinding.FragmentConnectBinding
+import com.example.mqttkotlinsample.domain.models.ConnectModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ConnectFragment : Fragment() {
     lateinit var binding: FragmentConnectBinding
+    private val viewModel: ConnectViewModel by viewModels()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentConnectBinding.inflate(inflater)
         return binding.root
@@ -40,6 +46,7 @@ class ConnectFragment : Fragment() {
             binding.edittextClientId.setText("")
             binding.edittextUsername.setText("")
             binding.edittextPassword.setText("")
+            viewModel.check()
         }
 
         binding.buttonConnect.setOnClickListener {
@@ -53,8 +60,14 @@ class ConnectFragment : Fragment() {
 				MQTT_CLIENT_ID_KEY     to clientIDFromEditText,
 				MQTT_USERNAME_KEY      to usernameFromEditText,
 				MQTT_PWD_KEY           to pwdFromEditText)
-            navigateToClientFragment(mqttCredentialsBundle)
+//            navigateToClientFragment(mqttCredentialsBundle)
+
+            checkConnection(ConnectModel(MQTT_SERVER_URI_KEY))
         }
+    }
+
+    private fun checkConnection(connectModel: ConnectModel) {
+        viewModel.checkConnection(connectModel)
     }
 
     private fun navigateToClientFragment(bundle: Bundle){
