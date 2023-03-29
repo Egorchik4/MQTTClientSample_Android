@@ -1,4 +1,4 @@
-package com.example.mqttkotlinsample
+package com.example.mqttkotlinsample.presentation.activity
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -9,6 +9,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.example.mqttkotlinsample.R
 
 class MainActivity : AppCompatActivity() {
 

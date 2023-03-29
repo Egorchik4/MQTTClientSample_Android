@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConnectFragment">
+    tools:context=".presentation.screens.connectfragment.ConnectFragment">
 
     <Button
             android:id="@+id/button_prefill_client"
@@ -36,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:text="@string/button_subscribe_text"
             app:layout_constraintEnd_toStartOf="@+id/button_unsubscribe"
             app:layout_constraintHorizontal_bias="0.5"
