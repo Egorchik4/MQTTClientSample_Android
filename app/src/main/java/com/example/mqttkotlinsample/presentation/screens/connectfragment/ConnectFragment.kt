@@ -46,7 +46,7 @@ class ConnectFragment : Fragment() {
             binding.edittextClientId.setText("")
             binding.edittextUsername.setText("")
             binding.edittextPassword.setText("")
-            viewModel.check()
+//            viewModel.check()
         }
 
         binding.buttonConnect.setOnClickListener {
@@ -62,7 +62,7 @@ class ConnectFragment : Fragment() {
 				MQTT_PWD_KEY           to pwdFromEditText)
 //            navigateToClientFragment(mqttCredentialsBundle)
 
-            checkConnection(ConnectModel(MQTT_SERVER_URI_KEY))
+            checkConnection(ConnectModel(serverURL = MQTT_SERVER_URI_KEY))
         }
     }
 

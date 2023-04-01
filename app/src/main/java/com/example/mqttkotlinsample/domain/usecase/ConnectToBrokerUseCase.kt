@@ -9,7 +9,4 @@ class ConnectToBrokerUseCase @Inject constructor(private val repository: Reposit
 	fun connectToBroker(connectModel: ConnectModel) {
 		repository.connectToBroker(connectModel)
 	}
-
-	fun checkConnection() =
-		repository.brokerIsConnected()
 }

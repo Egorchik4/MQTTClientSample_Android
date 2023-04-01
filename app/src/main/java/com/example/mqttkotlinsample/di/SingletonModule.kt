@@ -10,21 +10,32 @@ import com.example.mqttkotlinsample.domain.usecase.DisconnectToBrokerUseCase
 import com.example.mqttkotlinsample.domain.usecase.PublishMessageToTopicUseCase
 import com.example.mqttkotlinsample.domain.usecase.SubscribeToTopicUseCase
 import com.example.mqttkotlinsample.domain.usecase.UnsubscribeToTopicUseCase
+import com.example.mqttkotlinsample.presentation.screens.connectfragment.ConnectViewModel
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import org.eclipse.paho.android.service.MqttAndroidClient
+import org.eclipse.paho.client.mqttv3.IMqttActionListener
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class SingletonModule {
 
+//	@Provides
+//	@Singleton
+//	fun provideMqtt(@ApplicationContext context: Context): MqttAndroidClient {
+//		return MqttAndroidClient(context,null,null)
+//	}
+
+
 	@Provides
 	@Singleton
-	fun provideDataSource(@ApplicationContext context: Context): DataSource {
-		return DataSourceImpl(context)
+	fun provideDataSource(@ApplicationContext context: Context, listener: IMqttActionListener): DataSource {
+		return DataSourceImpl(context,MqttAndroidClient(context,null,null))
 	}
 
 	@Provides
