@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content">
+
+	<EditText
+		android:id="@+id/editTextDeviceName"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:autofillHints=""
+		android:ems="10"
+		android:hint="@string/device_name"
+		android:inputType="text"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<EditText
+		android:id="@+id/editTextTopic"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:autofillHints=""
+		android:ems="10"
+		android:hint="@string/topic"
+		android:inputType="text"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.502"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/editTextDeviceName" />
+
+	<EditText
+		android:id="@+id/editTextQos"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:autofillHints=""
+		android:ems="10"
+		android:hint="@string/qos"
+		android:inputType="number"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/editTextTopic" />
+
+	<EditText
+		android:id="@+id/editTextTypeOfValue"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:autofillHints=""
+		android:ems="10"
+		android:hint="@string/type_of_value"
+		android:inputType="text"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/editTextQos" />
+
+	<EditText
+		android:id="@+id/editTopLimit"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:autofillHints=""
+		android:ems="10"
+		android:hint="@string/top_limit"
+		android:inputType="number"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/editTextTypeOfValue" />
+
+	<EditText
+		android:id="@+id/editBottomLimit"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:autofillHints=""
+		android:ems="10"
+		android:hint="@string/bottom_limit"
+		android:inputType="number"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/editTopLimit" />
+</androidx.constraintlayout.widget.ConstraintLayout>
