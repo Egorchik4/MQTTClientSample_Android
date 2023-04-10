@@ -22,5 +22,17 @@
         <action
             android:id="@+id/action_devicesListFragment_to_ConnectFragment"
             app:destination="@id/ConnectFragment" />
+        <action
+            android:id="@+id/action_devicesListFragment_to_deviceInfoFragment"
+            app:destination="@id/deviceInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deviceInfoFragment"
+        android:name="com.example.mqttkotlinsample.presentation.screens.deviceinfo.DeviceInfoFragment"
+        android:label="fragment_device_info"
+        tools:layout="@layout/fragment_device_info" >
+        <action
+            android:id="@+id/action_deviceInfoFragment_to_devicesListFragment"
+            app:destination="@id/devicesListFragment" />
     </fragment>
 </navigation>
